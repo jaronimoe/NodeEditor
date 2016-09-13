@@ -5,5 +5,8 @@ public enum NodeType {
 
     Float,
     Addition,
-    Graph
+    Graph,
+    SplitType,
+    SplitRange,
+    SplitSpatial
 }

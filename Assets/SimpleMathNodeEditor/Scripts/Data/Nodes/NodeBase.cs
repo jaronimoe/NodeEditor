@@ -265,13 +265,49 @@ public class NodeBase : ScriptableObject
     #region Property Drawing Helpers
     private void DrawNodePropertiesByType(Rect viewRect, GUISkin guiSkin)
     {
-        if(nodeType == NodeType.Float)
+        //if(nodeType == NodeType.Float)
+        //{
+        //    DrawFloatNodeProperties(guiSkin);
+        //}
+        //else if(nodeType == NodeType.Addition)
+        //{
+        //    DrawAdditionNodeProperties(guiSkin);
+        //}
+
+        switch (nodeType)
         {
-            DrawFloatNodeProperties(guiSkin);
+            case NodeType.Float:
+                DrawFloatNodeProperties(guiSkin);
+                break;
+            case NodeType.Addition:
+                DrawAdditionNodeProperties(guiSkin);
+                break;
+            case NodeType.Graph:
+                DrawDefaultProperties(guiSkin);
+                break;
+            case NodeType.SplitType:
+                DrawDefaultProperties(guiSkin);
+                break;
+            case NodeType.SplitRange:
+                DrawDefaultProperties(guiSkin);
+                break;
+            case NodeType.SplitSpatial:
+                DrawDefaultProperties(guiSkin);
+                break;
+            default:
+                DrawDefaultProperties(guiSkin);
+                break;
         }
-        else if(nodeType == NodeType.Addition)
+    }
+
+    private void DrawDefaultProperties(GUISkin guiSkin)
+    {
+        if (parameters != null)
         {
-            DrawAdditionNodeProperties(guiSkin);
+            foreach (var key in parameters.Keys)
+            {
+                parameters[key].floatParam = EditorGUILayout.FloatField(key, parameters[key].floatParam, guiSkin.GetStyle("property_view"));
+            }
         }
     }
 
@@ -295,17 +331,53 @@ public class NodeBase : ScriptableObject
     #region Node BoxInside Drawing Helpers
     private void DrawNodeBoxInsideByType(Rect viewRect)
     {
-        if (nodeType == NodeType.Float)
+        //if (nodeType == NodeType.Float)
+        //{
+        //    DrawFloatNodeInsides();
+        //}
+        //else if (nodeType == NodeType.Addition)
+        //{
+        //    DrawAdditionNodeInsides();
+        //}
+        //else if (nodeType == NodeType.Graph)
+        //{
+        //    DrawGraphNodeInsides();
+        //}
+
+        switch (nodeType)
         {
-            DrawFloatNodeInsides();
-        }
-        else if (nodeType == NodeType.Addition)
+            case NodeType.Float:
+                DrawFloatNodeInsides();
+                break;
+            case NodeType.Addition:
+                DrawAdditionNodeInsides();
+                break;
+            case NodeType.Graph:
+                DrawGraphNodeInsides();
+                break;
+            case NodeType.SplitType:
+                DrawDefaultNode();
+                break;
+            case NodeType.SplitRange:
+                DrawDefaultNode();
+                break;
+            case NodeType.SplitSpatial:
+                DrawDefaultNode();
+                break;
+            default:
+                DrawDefaultNode();
+                break;
+        } 
+    }
+
+    private void DrawDefaultNode()
+    {
+        if (parameters != null)
         {
-            DrawAdditionNodeInsides();
-        }
-        else if (nodeType == NodeType.Graph)
-        {
-            DrawGraphNodeInsides();
+            foreach (var key in parameters.Keys)
+            {
+                GUI.Label(new Rect(nodeRect.x + 10.0f, nodeRect.y + ((nodeRect.height) * 0.5f) - 10f, nodeRect.width * 0.5f - 10f, 20f), key + ": " + parameters[key].floatParam.ToString(), GuiStyles._instance.whiteNodeLabel);
+            }
         }
     }
 

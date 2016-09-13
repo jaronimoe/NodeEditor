@@ -1,29 +1,143 @@
 <?xml version="1.0"?>
 <NodeTypes>
+
   <Node name="Float Node" type="0">
     <numberOfInputs min="0" max="0" default="0" />
     <numberOfOutputs min="1" max="1" default="1" />
     <inputType multiInput="false" multiOutput="false" />
-    <color>green</color>    
+    <color>green</color>
     <parameters>
-		<parameter key="value" type="System.Single" value="0.5"/>		
-	</parameters>
+    <parameter key="value" type="System.Single" value="0.5"/>
+  </parameters>
   </Node>
+
   <Node name="Addition Node" type="1">
     <numberOfInputs min="0" max="10" default="2" />
     <numberOfOutputs min="1" max="1" default="1" />
     <inputType multiInput="false" multiOutput="false" />
     <color>red</color>
     <parameters>
-		<parameter key="value" type="System.Single" value="0.5"/>		
-	</parameters>
+    <parameter key="value" type="System.Single" value="0.5"/>
+  </parameters>
   </Node>
-  <Node name="Group Node" type="2">    
-  	<color>blue</color>
+
+  <Node name="Group Node" type="2">
+    <color>blue</color>
     <numberOfInputs min="0" max="20" default="1" />
     <numberOfOutputs min="0" max="20" default="1" />
     <inputType multiInput="false" multiOutput="false" />
     <parameters>
-	</parameters>
-  </Node>    
+  </parameters>
+  </Node>
+
+  <Node name="Split Into Types" type="3">
+    <numberOfInputs min="1" max="1" default="1"/>
+    <numberOfOutputs min="1" max="42" default="1"/>
+    <inputType multiInput="false" multiOutput="false"/>
+    <color>green</color>
+    <parameters>
+  </parameters>
+  </Node>
+
+  <Node name="Split By Range" type="4">
+    <numberOfInputs min="1" max="1" default="1"/>
+    <numberOfOutputs min="1" max="42" default="1"/>
+    <inputType multiInput="false" multiOutput="false"/>
+    <color>green</color>
+    <parameters>
+    <parameter key="Range" type="System.Single" value="21"/>
+  </parameters>
+  </Node>
+
+<Node name="Split Spatially" type="5">
+  <numberOfInputs min="1" max="1" default="1"/>
+  <numberOfOutputs min="2" max="2" default="2"/>
+  <inputType multiInput="false" multiOutput="false"/>
+  <color>green</color>
+  <parameters>
+  <parameter key="CutObjectID" type="System.Single" value="0.0"/>
+</parameters>
+</Node>
+
+<Node name="Split Into Molecules" type="6">
+  <numberOfInputs min="1" max="1" default="1"/>
+  <numberOfOutputs min="2" max="2" default="2"/>
+  <inputType multiInput="false" multiOutput="false"/>
+  <color>green</color>
+  <parameters>
+</parameters>
+</Node>
+
+<Node name="Translate" type="7">
+  <numberOfInputs min="1" max="1" default="1"/>
+  <numberOfOutputs min="1" max="2" default="1"/>
+  <inputType multiInput="false" multiOutput="false"/>
+  <color>green</color>
+  <parameters>
+  <parameter key="x" type="System.Single" value="0.0"/>
+  <parameter key="y" type="System.Single" value="0.0"/>
+  <parameter key="z" type="System.Single" value="0.0"/>
+</parameters>
+</Node>
+
+<Node name="Rotate" type="8">
+  <numberOfInputs min="1" max="1" default="1"/>
+  <numberOfOutputs min="1" max="1" default="1"/>
+  <inputType multiInput="false" multiOutput="false"/>
+  <color>green</color>
+  <parameters>
+  <parameter key="x" type="System.Single" value="0.0"/>
+  <parameter key="y" type="System.Single" value="0.0"/>
+  <parameter key="z" type="System.Single" value="0.0"/>
+</parameters>
+</Node>
+
+<Node name="Scale" type="9">
+  <numberOfInputs min="1" max="1" default="1"/>
+  <numberOfOutputs min="1" max="1" default="1"/>
+  <inputType multiInput="false" multiOutput="false"/>
+  <color>green</color>
+  <parameters>
+  <parameter key="x" type="System.Single" value="0.0"/>
+  <parameter key="y" type="System.Single" value="0.0"/>
+  <parameter key="z" type="System.Single" value="0.0"/>
+</parameters>
+</Node>
+
+<Node name="Morph" type="10">
+  <numberOfInputs min="1" max="1" default="1"/>
+  <numberOfOutputs min="1" max="1" default="1"/>
+  <inputType multiInput="false" multiOutput="false"/>
+  <color>green</color>
+  <parameters>
+  <parameter key="Type" type="System.Single" value="0"/>
+</parameters>
+</Node>
+
+<Node name="Blur" type="11">
+  <numberOfInputs min="1" max="1" default="1"/>
+  <numberOfOutputs min="1" max="1" default="1"/>
+  <inputType multiInput="false" multiOutput="false"/>
+  <color>green</color>
+  <parameters>
+  <parameter key="Factor01" type="System.Single" value="0.0"/>
+  <parameter key="Factor02" type="System.Single" value="0.0"/>
+</parameters>
+</Node>
+
+<Node name="OverlayCopy" type="12">
+  <numberOfInputs min="1" max="1" default="1"/>
+  <numberOfOutputs min="1" max="1" default="1"/>
+  <inputType multiInput="false" multiOutput="false"/>
+  <color>green</color>
+  <parameters>
+  <parameter key="Factor01" type="System.Single" value="0.0"/>
+  <parameter key="Factor02" type="System.Single" value="0.0"/>
+</parameters>
+</Node>
+
 </NodeTypes>
+  <!--
+
+
+    -->
