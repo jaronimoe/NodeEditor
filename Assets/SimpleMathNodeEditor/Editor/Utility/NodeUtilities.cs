@@ -47,6 +47,7 @@ public static class NodeUtilities
             if (currentGraph != null)
             {
                 currentWindow.currentNodeGraph = currentGraph;
+                NodeGraph.Instance = currentGraph;
             }
         }
         else

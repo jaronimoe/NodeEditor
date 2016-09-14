@@ -36,6 +36,10 @@ public class NodeGraph : ScriptableObject
     float height = 0;
     public bool selectionFlag = false;
 
+    // Declare the graph as a singleton
+    public static NodeGraph Instance;
+
+
     void OnEnable()
     {
         if(nodes == null)
@@ -529,7 +533,7 @@ public class NodeGraph : ScriptableObject
                 evaluateNodes(previousNode, startNode);
         }
 
-        Debug.Log(startNode.nodeName + " " + startNode.parameters["value"].floatParam);
+        Debug.Log(startNode.nodeName);// + " " + startNode.parameters["value"].floatParam);
         startNode.evaluateNode();
 
         foreach (NodeOutput child in startNode.nodeOutputs)
