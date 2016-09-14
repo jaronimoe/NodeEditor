@@ -8,5 +8,13 @@ public enum NodeType {
     Graph,
     SplitType,
     SplitRange,
-    SplitSpatial
+    SplitSpatial,
+    SplitMolecules,
+    Translate,
+    Rotate,
+    Scale,
+    Morph,
+    Blur,
+    Overlay,
+    DataRoot
 }
