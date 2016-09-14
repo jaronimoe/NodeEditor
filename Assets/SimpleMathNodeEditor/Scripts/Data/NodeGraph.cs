@@ -523,7 +523,7 @@ public class NodeGraph : ScriptableObject
         GUI.backgroundColor = backgroundColor;
     }
 
-    private void evaluateNodes(NodeBase startNode, NodeBase lastRecursionNode)
+    public void evaluateNodes(NodeBase startNode, NodeBase lastRecursionNode)
     {
 
         foreach (NodeInput parent in startNode.nodeInputs)
