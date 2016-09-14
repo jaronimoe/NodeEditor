@@ -643,9 +643,14 @@ public class NodeBase : ScriptableObject
                     if (parentGraph != null)
                     {
                         if (parentGraph.wantsConnection)
-                        {                
-                            if(parentGraph.connectionOutputList != null)
+                        {
+                            if (parentGraph.connectionOutputList != null)
                             {
+                                if (parentGraph.connectionOutputList[0].outputNode == this)
+                                {
+                                    return;
+                                }
+
                                 nodeInputs[i].inputNode = parentGraph.connectionOutputList[0].outputNode;
                                 nodeInputs[i].isOccupied = nodeInputs[i].inputNode != null;
                                 nodeInputs[i].outputPos = parentGraph.connectionOutputList[0].position;
@@ -661,6 +666,11 @@ public class NodeBase : ScriptableObject
                             }
                             else
                             {
+                                if (parentGraph.connectionOutput.outputNode == this)
+                                {
+                                    return;
+                                }
+
                                 nodeInputs[i].inputNode = parentGraph.connectionOutput.outputNode;
                                 nodeInputs[i].isOccupied = nodeInputs[i].inputNode != null;
                                 nodeInputs[i].outputPos = parentGraph.connectionOutput.position;
