@@ -506,21 +506,21 @@ public class NodeBase : ScriptableObject
             }
             else
             {
-                if (currentInput.inputNode.parentGraph.graphNode.multiOutput && !multiInput)
+                if (currentInput.inputNode.parentGraph.graphNode.nodeOutputs.Count > 0)
                 {
-                    DrawUtilities.DrawNodeCurve(currentInput.inputNode.parentGraph.graphNode.getMultiOutputRect(), currentInput.rect, WorkPreferences.nodeCurveColor, WorkPreferences.nodeCurveThickness);
-                }
-                else if (currentInput.inputNode.parentGraph.graphNode.multiOutput && multiInput)
-                {
-                    DrawUtilities.DrawNodeCurve(currentInput.inputNode.parentGraph.graphNode.getMultiOutputRect(), getMultiInputRect(), WorkPreferences.nodeCurveColor, WorkPreferences.nodeCurveThickness);
-                }
-                else if (!currentInput.inputNode.parentGraph.graphNode.multiOutput && multiInput)
-                {
-                    DrawUtilities.DrawNodeCurve(currentInput.inputNode.parentGraph.graphNode.nodeOutputs[currentInput.outputPos].rect, getMultiInputRect(), WorkPreferences.nodeCurveColor, WorkPreferences.nodeCurveThickness);
-                }
-                else
-                {
-                    if (currentInput.inputNode.parentGraph.graphNode.nodeOutputs.Count > 0)
+                    if (currentInput.inputNode.parentGraph.graphNode.multiOutput && !multiInput)
+                    {
+                        DrawUtilities.DrawNodeCurve(currentInput.inputNode.parentGraph.graphNode.getMultiOutputRect(), currentInput.rect, WorkPreferences.nodeCurveColor, WorkPreferences.nodeCurveThickness);
+                    }
+                    else if (currentInput.inputNode.parentGraph.graphNode.multiOutput && multiInput)
+                    {
+                        DrawUtilities.DrawNodeCurve(currentInput.inputNode.parentGraph.graphNode.getMultiOutputRect(), getMultiInputRect(), WorkPreferences.nodeCurveColor, WorkPreferences.nodeCurveThickness);
+                    }
+                    else if (!currentInput.inputNode.parentGraph.graphNode.multiOutput && multiInput)
+                    {
+                        DrawUtilities.DrawNodeCurve(currentInput.inputNode.parentGraph.graphNode.nodeOutputs[currentInput.outputPos].rect, getMultiInputRect(), WorkPreferences.nodeCurveColor, WorkPreferences.nodeCurveThickness);
+                    }
+                    else
                     {
                         DrawUtilities.DrawNodeCurve(currentInput.inputNode.parentGraph.graphNode.nodeOutputs[currentInput.outputPos].rect, currentInput.rect, WorkPreferences.nodeCurveColor, WorkPreferences.nodeCurveThickness);
                     }
