@@ -114,7 +114,7 @@ public class NodeBase : ScriptableObject
                     {
                         timePointer.isMoveable = true;
                         timePointer.isSelected = true;
-
+                        
                         foreach (NodeBase n in parentGraph.selectedNodes)
                         {
                             n.timePointer.isMoveable = true;
@@ -462,7 +462,7 @@ public class NodeBase : ScriptableObject
         //Draws NodeCurves between nodes in the highest parentGraph and single Input Handles
         if (!currentInput.inputNode.multiOutput && !multiInput && currentInput.inputNode.parentGraph == parentGraph)
         {
-            DrawUtilities.DrawNodeCurve(currentInput.getOutputPos(), currentInput.rect, WorkPreferences.nodeCurveColor, WorkPreferences.nodeCurveThickness);
+            DrawUtilities.DrawNodeCurve(currentInput.getOutputPosRect(), currentInput.rect, WorkPreferences.nodeCurveColor, WorkPreferences.nodeCurveThickness);
         }
         else if (currentInput.inputNode.parentGraph == parentGraph && currentInput.inputNode.multiOutput && !multiInput)
         {
@@ -616,8 +616,14 @@ public class NodeBase : ScriptableObject
                     else // remove all Inputs
                     {
                         Debug.Log("Removing MultiInput");
+                        foreach (NodeInput input in nodeInputs)
+                        {
+                            input.getConnectedOutput().connectedToNode = null;
+                            input.outputPos = -1;
+                            input.inputNode = null;
+                            input.isOccupied = false;
+                        }
                         nodeInputs = new List<NodeInput>();
-                        numberOfInputs = nodeInputs.Count;
                     }
                 }
             }
@@ -670,6 +676,8 @@ public class NodeBase : ScriptableObject
                         else
                         {
                             Debug.Log("Removing Connection #" + i);
+                            nodeInputs[i].getConnectedOutput().connectedToNode = null;
+                            nodeInputs[i].outputPos = -1;
                             nodeInputs[i].inputNode = null;
                             nodeInputs[i].isOccupied = false;
                         }
@@ -712,20 +720,28 @@ public class NodeBase : ScriptableObject
                 {
                     if (parentGraph != null)
                     {
-                        if(nodeType == NodeType.Graph)
+                        if (nodeOutputs[i].connectedToNode == null)
                         {
-                            if (nodeOutputs[i].outputNode != null)
+                            if(nodeType == NodeType.Graph)
+                            {
+                                if (nodeOutputs[i].outputNode != null)
+                                {
+                                    parentGraph.wantsConnection = true;
+                                    parentGraph.connectionNode = nodeOutputs[i].outputNode;                                
+                                    parentGraph.connectionOutput = nodeOutputs[i];
+                                }
+                            }
+                            else
                             {
                                 parentGraph.wantsConnection = true;
-                                parentGraph.connectionNode = nodeOutputs[i].outputNode;                                
+                                parentGraph.connectionNode = this;
                                 parentGraph.connectionOutput = nodeOutputs[i];
                             }
                         }
                         else
                         {
-                            parentGraph.wantsConnection = true;
-                            parentGraph.connectionNode = this;
-                            parentGraph.connectionOutput = nodeOutputs[i];
+                            //TODO disconnect the output from the input
+                            Debug.Log("disconnect it!");
                         }
                     }
                 }
