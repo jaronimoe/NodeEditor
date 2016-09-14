@@ -25,6 +25,11 @@ public class NodeEditorWindow : EditorWindow
         CreateViews();
     }
 
+    public static void DestroyEditor()
+    {
+        currentEditorWindow.Close();
+    }
+
     void OnEnable()
     {
         Debug.Log("Node Editor Windows was Enabled.");

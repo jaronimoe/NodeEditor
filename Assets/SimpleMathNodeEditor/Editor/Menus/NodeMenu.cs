@@ -18,6 +18,11 @@ public class NodeMenu
         PreferencesWindow.InitPreferenceWindow();
     }
 
-
+    [MenuItem("Node Editor/Destroy Editor")]
+    public static void DestroyNodeEditor()
+    {
+        Debug.Log("Node Editor Destroyed!");
+        NodeEditorWindow.DestroyEditor();
+    }
 
 }
