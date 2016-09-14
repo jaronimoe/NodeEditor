@@ -105,8 +105,6 @@ public class NodeBase : ScriptableObject
                     rect.x += e.delta.x;
                     rect.y += e.delta.y;
 
-                    rect.position = snap(rect.position, snapSize);
-
                     nodeRect = rect;
                 }
 

@@ -30,18 +30,17 @@ public class NodePropertyView : ViewBaseClass
                 }
             }
         }
-
         GUILayout.Space(6f);
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Snap Interval: ");
-        NodeBase.snapSize = EditorGUILayout.IntSlider((int)NodeBase.snapSize, 1, 50);
-        GUILayout.EndHorizontal();
+        //GUILayout.BeginHorizontal();
+        //GUILayout.Label("Snap Interval: ");
+        //NodeBase.snapSize = EditorGUILayout.IntSlider((int)NodeBase.snapSize, 1, 50);
+        //GUILayout.EndHorizontal();        
 
-        GUILayout.Space(40f);
-        GUILayout.BeginHorizontal();
+        GUILayout.Space(20f);
+        //GUILayout.BeginHorizontal();
         GUILayout.Label("Zoom: ");
         NodeWorkView._zoom = EditorGUILayout.Slider(NodeWorkView._zoom, 0.6f, 1.25f);
-        GUILayout.EndHorizontal();
+        //GUILayout.EndHorizontal();
 
         GUILayout.Space(450f);
 
