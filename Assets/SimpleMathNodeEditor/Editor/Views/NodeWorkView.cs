@@ -152,7 +152,7 @@ public class NodeWorkView : ViewBaseClass
             }
         }
 
-        if(e.keyCode == KeyCode.Delete)
+        if(e.keyCode == KeyCode.Delete && e.type == EventType.KeyUp)
         {
             if(currentNodeGraph != null)
             {
