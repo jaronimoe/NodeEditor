@@ -165,8 +165,7 @@ public class NodeGraph : ScriptableObject
                 if(selectedNodes != null)
                 {
                     if (selectedNodes.Count > 0)
-                        evaluateNodes(selectedNodes[0], null, 0);
-                    //printGraph(selectedNodes[0]);
+                        evaluateNodes(selectedNodes[0], null);
                 }
             }
 
@@ -251,6 +250,11 @@ public class NodeGraph : ScriptableObject
 
         if(evaluateTrigger)
         {
+            if (selectedNodes != null)
+            {
+                if (selectedNodes.Count > 0)
+                    evaluateNodes(selectedNodes[0], null);
+            }
             evaluateTrigger = false;
         }
 
@@ -515,24 +519,25 @@ public class NodeGraph : ScriptableObject
         GUI.backgroundColor = backgroundColor;
     }
 
-    private void evaluateNodes(NodeBase startNode, NodeBase lastRecursionNode, int level)
+    private void evaluateNodes(NodeBase startNode, NodeBase lastRecursionNode)
     {
-        if(level < 8)
+
+        foreach (NodeInput parent in startNode.nodeInputs)
         {
-            foreach (NodeInput parent in startNode.nodeInputs)
-            {
-                NodeBase previousNode = parent.inputNode;
-                if (previousNode != null && previousNode != lastRecursionNode)
-                    evaluateNodes(previousNode, lastRecursionNode, level + 1);
-            }
+            NodeBase previousNode = parent.inputNode;
+            if (previousNode != null && previousNode != lastRecursionNode)
+                evaluateNodes(previousNode, startNode);
+        }
 
-            Debug.Log(startNode.nodeName + startNode.parameters["value"].floatParam);
+        Debug.Log(startNode.nodeName + " " + startNode.parameters["value"].floatParam);
+        startNode.evaluateNode();
 
-            foreach (NodeOutput child in startNode.nodeOutputs)
+        foreach (NodeOutput child in startNode.nodeOutputs)
+        {
+            NodeBase nextNode = child.connectedToNode;
+            if (nextNode != null && nextNode != lastRecursionNode)
             {
-                NodeBase nextNode = child.connectedToNode;
-                if (nextNode != null && nextNode != lastRecursionNode)
-                    evaluateNodes(nextNode, startNode, level + 1);
+                evaluateNodes(nextNode, startNode);
             }
         }
     }
