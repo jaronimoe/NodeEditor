@@ -19,6 +19,8 @@ public class NodeDescriptor
     public int minOutputs;
     public int maxOutputs;
 
+    public float defaultAnimationLength;
+
     public ParameterDictionary parameters;
 
     public override string ToString()

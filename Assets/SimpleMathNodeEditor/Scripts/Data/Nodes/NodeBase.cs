@@ -47,7 +47,7 @@ public class NodeBase : ScriptableObject
         titleBarColor = descriptor.titleBarColor;
 
         timePointer = new TimePointer();
-        timePointer.InitTimePointer();
+        timePointer.InitTimePointer(descriptor.defaultAnimationLength);
         timePointer.parentNode = this;
 
         dragButton = new DragButton();
@@ -732,7 +732,7 @@ public class NodeBase : ScriptableObject
             }
         }
     }
-    
+
     private void DrawCurrentTimePosition()
     {
         TimeSpan t = TimeSpan.FromMilliseconds((timePointer.GetEndAnimPos().x * 100) - (timePointer.GetStartAnimPos().x * 100));
@@ -762,7 +762,7 @@ public class NodeBase : ScriptableObject
                 t.Minutes,
                 t.Seconds,
                 t.Milliseconds / 10);
-
+        
         return str;
     }
     #endregion

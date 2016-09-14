@@ -20,13 +20,13 @@ public class TimePointer
     private float opacity = 0.2f;
     private float curveHeight = 150f;
 
-    public void InitTimePointer()
+    public void InitTimePointer(float defaultAnimationLength)
     {
         arrowRect = new Rect(10f, 10f, 36f, 48f);
         centerPoint = new Vector2(0f, 0f);
 
-        startAnimOffset = -100f;
-        endAnimOffset = 100f;
+        startAnimOffset = (-1) * (defaultAnimationLength * 10) / 2;
+        endAnimOffset = (defaultAnimationLength * 10) / 2;
     }
 
     public void drawArrow(Event e,Rect viewRect, Rect workViewRect, GUISkin guiSkin)

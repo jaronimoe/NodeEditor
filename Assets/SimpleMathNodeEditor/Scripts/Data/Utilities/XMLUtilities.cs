@@ -35,6 +35,8 @@ public class XMLUtilities
             nodeDescriptor.maxOutputs = Convert.ToInt16(node.SelectSingleNode("numberOfOutputs").Attributes.GetNamedItem("max").Value);
             nodeDescriptor.titleBarColor = node.SelectSingleNode("color").InnerText;
 
+            nodeDescriptor.defaultAnimationLength = Convert.ToSingle(node.SelectSingleNode("defaultAnimationLength").InnerText);
+
             nodeDescriptor.isMultiInput = "true" == node.SelectSingleNode("inputType").Attributes.GetNamedItem("multiInput").Value;
             nodeDescriptor.isMultiOutput = "true" == node.SelectSingleNode("inputType").Attributes.GetNamedItem("multiOutput").Value;
             
