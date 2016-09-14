@@ -551,6 +551,12 @@ public class NodeBase : ScriptableObject
                                 bool needsExpanding = true;
                                 for (int k = 0; k < nodeInputs.Count; k++)
                                 {
+                                    if (parentGraph.connectionOutputList[i].outputNode == this)
+                                    {
+                                        Debug.Log("Connection impossible");
+                                        return;
+                                    }
+
                                     if (nodeInputs[k].inputNode == null && nodeInputs[k].isOccupied == false)
                                     {
                                         nodeInputs[k].inputNode = parentGraph.connectionOutputList[i].outputNode;
@@ -586,9 +592,15 @@ public class NodeBase : ScriptableObject
                         {
                             for (int k = 0; k < nodeInputs.Count; k++)
                             {
-                                if(nodeInputs[k].inputNode == null && nodeInputs[k].isOccupied == false)
+                                if (parentGraph.connectionOutput.outputNode == this)
                                 {
-                                    nodeInputs[k].inputNode = parentGraph.connectionNode;
+                                    Debug.Log("Connection impossible");
+                                    return;
+                                }
+
+                                if (nodeInputs[k].inputNode == null && nodeInputs[k].isOccupied == false)
+                                {
+                                    nodeInputs[k].inputNode = parentGraph.connectionOutput.outputNode;
                                     nodeInputs[k].isOccupied = nodeInputs[k].inputNode != null;
 
                                     parentGraph.wantsConnection = false;
